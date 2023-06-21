@@ -21,12 +21,11 @@ Click here for additional documentation and instructions on how to use it.
 ## Blueprint
 This project includes a blueprint that you can use without setting up a sensor.
 
+[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Flangestefan%2Fauto-sun-blind%2Fblob%2Fmain%2Fblueprints%2Fauto_sun_blind.yaml)
+
 Features:
 
     - Easy variable control with sliders
     - Time-out to save battery or reduce the amount of changing the cover position
     - Minimum percentage change to prevent the amount of changing the cover position by small percentage changes
 
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Flangestefan%2Fauto-sun-blind%2Fblob%2Fmain%2Fblueprints%2Fauto_sun_blind.yaml)
-
-Click here for the full documentation for the Blueprint.
