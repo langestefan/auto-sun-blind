@@ -4,6 +4,8 @@ Automatically control your sun blinds via home assistant based on the position o
 This repo contains a `custom_template`, `blueprint`.
 
 This [forum post](https://community.home-assistant.io/t/automatic-blinds-sunscreen-control-based-on-sun-platform/573818) explains the math behind the project.
+
+![example-image](/docs/assets/angles.png)
 ## Custom Template
 `version 1.0.0`
 
