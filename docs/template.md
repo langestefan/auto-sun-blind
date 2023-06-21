@@ -18,7 +18,7 @@ Manual install is done by copying the contents of [`auto_sun_blind.jinja`](https
 
 |name|default|unit|range|description|
 |---|---|---|---|---|
-|`azimuth`| 136 | degrees| [0, 359] | |
+|`azimuth`| 136 | degrees| [0, 359] | The angle of the window measured from the North. |
 |`distance`| 0.5 |M| [0,] |The distance from the window you want the beginning of the shadow to fall.|
 |`height`| 1.96 |M| [0,]|The height of your window in meters (or actually the maximum height of your blinds, but for most people this will be the same number ofcourse)|
 |`min_height`| 0 |M| [0,] |The minimum height in meters when the blinds are fully open. This will be 0 in most cases.|
