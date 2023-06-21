@@ -1,1 +1,44 @@
-{#PLACEHOLDER#}
+{%- macro auto_sun_blind(azimuth, distance, height, min_height, def_height, fov_left, fov_right, elev_min, elev_max ) -%}
+    {% set deg2rad = pi/180 %}
+
+    {%- macro norm(x, min, max) %}
+        {{ (x - min) / (max - min) }}
+    {%- endmacro %}
+
+    {%- macro h2perc(x) %}
+        {{ 100 * float(norm(x, h_min, h_max)) }}
+    {%- endmacro %}
+
+    {%- macro clipv(x, x_min, x_max) %}
+        {{ max(min(x, x_max), x_min) }}
+    {%- endmacro %}
+
+    {% set win_azi = azimuth | default(136) %}
+    {% set d = distance | default(0.5) %}
+    {% set h_max = height | default(1.96) %}
+    {% set h_min = min_height | default(0) %}
+
+    {# FOV #}
+    {% set azi_left = deg2rad * -(fov_left | default(90)) %} {# Minimum: -90 #}
+    {% set azi_right = deg2rad * (fov_right | default(90)) %} {# Maximum: 90 #}
+    {% set elev_high = deg2rad * (elev_max | default(90)) %} {# Maximum: 90 #}
+    {% set elev_low = deg2rad * (elev_min | default(0)) %} {# Minimum: 0 #}
+
+    {% set sun_azi = state_attr('sun.sun', 'azimuth') %}
+    {% set sun_ele = state_attr('sun.sun', 'elevation') %}
+
+    {% set def_h = (def_height | default(60)) / 100 * h_max %}
+
+    {% set alpha = deg2rad * sun_ele %}
+    {% set gamma = deg2rad * (win_azi - sun_azi) %}    
+
+    {% set h = (d / cos(gamma)) * tan(alpha) %}
+
+    {# gamma is outside of FOV #}
+    {% if gamma < azi_left or gamma > azi_right or alpha < elev_low or alpha > elev_high %}
+        {{ clipv(h2perc(def_h) | round(0) | int , 0, 100) }}
+    {# gamma is inside of FOV #}
+    {% else %}  
+        {{ clipv(h2perc(h) | round(0) | int , 0, 100) }}
+    {% endif %}
+{%- endmacro-%}
