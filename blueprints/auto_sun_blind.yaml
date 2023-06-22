@@ -265,7 +265,7 @@ trigger:
   - platform: state
     entity_id:
       - sun.sun
-conditio: !input condition
+condition: !input condition
 action:
   - choose:
       - conditions:
