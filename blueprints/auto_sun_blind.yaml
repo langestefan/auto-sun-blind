@@ -1,5 +1,5 @@
 ---
-#version 1.0.3
+#version 1.0.4
 blueprint:
   name: Cover Height
   description: "`version 1.0.3` \n
@@ -177,9 +177,15 @@ blueprint:
               value: and
             - label: OR
               value: or
-    action_condition:
-      name: Extra Actions and/or Conditions
-      description: Extra actions and/or conditions to run before intial service
+    condition:
+      name: Extra Conditions
+      description: Extra conditions for the automation
+      default: []
+      selector:
+        action: {}
+    action:
+      name: Extra Actions
+      description: Extra actions to run before intial service
       default: []
       selector:
         action: {}
@@ -259,6 +265,7 @@ trigger:
   - platform: state
     entity_id:
       - sun.sun
+conditio: !input condition
 action:
   - choose:
       - conditions:
@@ -275,7 +282,7 @@ action:
                 value_template: >
                   {{now() - timedelta(minutes=time_out) >= states[cover_entity.entity_id].last_updated }}
           - choose: []
-            default: !input action_condition
+            default: !input action
           - service: cover.set_cover_position
             data:
               position: "{{ cover_height | int(0) }}"
@@ -294,7 +301,7 @@ action:
                 value_template: >
                   {{now() - timedelta(minutes=time_out) >= states[cover_entity.entity_id].last_updated }}
           - choose: []
-            default: !input action_condition
+            default: !input action
           - service: cover.set_cover_position
             data:
               position: "{{ cover_height | int(0) }}"
