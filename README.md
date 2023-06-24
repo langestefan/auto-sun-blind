@@ -24,7 +24,7 @@ Manual install is done by copying the contents of [`auto_sun_blind.jinja`](https
 ```
 [Click here for additional documentation and instructions on how to use it.](https://github.com/langestefan/auto-sun-blind/blob/main/docs/template.md)
 ## Blueprint
-`version 1.0.4`
+`version 1.0.5`
 
 This project includes a blueprint that you can use without setting up a sensor.
 
@@ -36,5 +36,6 @@ Features:
     - Time-out to save battery or reduce the amount of changing the cover position
     - Minimum percentage change to prevent the amount of changing the cover position by small percentage changes
     - Add additional actions such as notifications to the automation
+    - Add conditions like the time of day, minimum amount of lux
     - Default height can be templated, which allows for conditions if the sun is not in front of the window.
 

@@ -1,12 +1,13 @@
 ---
-#version 1.0.4
+#version 1.0.5
 blueprint:
   name: Cover Height
-  description: "`version 1.0.3` \n
+  description: "`version 1.0.5` \n
     Set cover position based on direct sunlight exposed to window \n\n
     Calculations are done internally in the blueprint removing the need to use a sensor to input a value
     \n for in depth information on the calculations and variables, check this forum [post](https://community.home-assistant.io/t/automatic-blinds-sunscreen-control-based-on-sun-platform/573818)
-    \n **Code Owner:** [`@langestefan`](https://community.home-assistant.io/u/langestefan/)"
+    \n **Code Owner:** [`@langestefan`](https://community.home-assistant.io/u/langestefan/)
+    \n **Blueprint by:** [`@basbruss`](https://community.home-assistant.io/u/basbruss/)"
   domain: automation
   input:
     cover_entity:
@@ -276,8 +277,9 @@ action:
             conditions:
               - condition: template
                 value_template: >
-                  {{ ((state_attr(cover_entity.entity_id,'current_position') | float - cover_height | float) | abs > change_threshold)
-                  or (cover_height in [default_height, default_template])}}
+                  {%set position = state_attr(cover_entity.entity_id,'current_position')%}
+                  {{ ((position | float - cover_height | float) | abs > change_threshold)
+                  or (cover_height in [default_height, default_template] and position not in [default_height, default_template])}}
               - condition: template
                 value_template: >
                   {{now() - timedelta(minutes=time_out) >= states[cover_entity.entity_id].last_updated }}
@@ -295,8 +297,9 @@ action:
             conditions:
               - condition: template
                 value_template: >
-                  {{ ((state_attr(cover_entity.entity_id,'current_position') | float - cover_height | float) | abs > change_threshold)
-                  or (cover_height in [default_height, default_template])}}
+                  {%set position = state_attr(cover_entity.entity_id,'current_position')%}
+                  {{ ((position | float - cover_height | float) | abs > change_threshold)
+                  or (cover_height in [default_height, default_template] and position not in [default_height, default_template])}}
               - condition: template
                 value_template: >
                   {{now() - timedelta(minutes=time_out) >= states[cover_entity.entity_id].last_updated }}
