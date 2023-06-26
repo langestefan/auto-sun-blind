@@ -277,8 +277,8 @@ action:
             conditions:
               - condition: template
                 value_template: >
-                  {%- set position = state_attr(cover_entity.entity_id,'current_position') -%}
-                  {{ ((position | float - cover_height | float) | abs > change_threshold)
+                  {%- set position = state_attr(cover_entity.entity_id,'current_position') | float -%}
+                  {{ ((position - cover_height | float) | abs > change_threshold)
                   or (cover_height in [default_height, default_template] and position not in [default_height, default_template])}}
               - condition: template
                 value_template: >
@@ -297,8 +297,8 @@ action:
             conditions:
               - condition: template
                 value_template: >
-                  {%- set position = state_attr(cover_entity.entity_id,'current_position') -%}
-                  {{ ((position | float - cover_height | float) | abs > change_threshold)
+                  {%- set position = state_attr(cover_entity.entity_id,'current_position') | float -%}
+                  {{ ((position - cover_height | float) | abs > change_threshold)
                   or (cover_height in [default_height, default_template] and position not in [default_height, default_template])}}
               - condition: template
                 value_template: >
