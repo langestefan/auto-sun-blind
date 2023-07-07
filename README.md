@@ -24,7 +24,7 @@ Manual install is done by copying the contents of [`auto_sun_blind.jinja`](https
 ```
 [Click here for additional documentation and instructions on how to use it.](https://github.com/langestefan/auto-sun-blind/blob/main/docs/template.md)
 ## Blueprint
-`version 1.0.5`
+`version 1.0.6`
 
 This project includes a blueprint that you can use without setting up a sensor.
 
