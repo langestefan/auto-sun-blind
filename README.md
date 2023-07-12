@@ -24,7 +24,7 @@ Manual install is done by copying the contents of [`auto_sun_blind.jinja`](https
 ```
 [Click here for additional documentation and instructions on how to use it.](https://github.com/langestefan/auto-sun-blind/blob/main/docs/template.md)
 ## Blueprint
-`version 1.0.6`
+`version 1.1.0`
 
 This project includes a blueprint that you can use without setting up a sensor.
 
@@ -32,6 +32,7 @@ This project includes a blueprint that you can use without setting up a sensor.
 
 Features:
 
+    - Multiple cover control (`since v1.1.0`)
     - Easy variable control with sliders
     - Time-out to save battery or reduce the amount of changing the cover position
     - Minimum percentage change to prevent the amount of changing the cover position by small percentage changes
