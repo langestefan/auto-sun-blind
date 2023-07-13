@@ -1,8 +1,8 @@
 ---
-#version 1.1.0
+#version 1.1.1
 blueprint:
   name: Cover Height
-  description: "`version 1.1.0` \n
+  description: "`version 1.1.1` \n
     Set cover position based on direct sunlight exposed to window \n\n
     Calculations are done internally in the blueprint removing the need to use a sensor to input a value
     \n for in depth information on the calculations and variables, check this forum [post](https://community.home-assistant.io/t/automatic-blinds-sunscreen-control-based-on-sun-platform/573818)
@@ -266,7 +266,13 @@ variables:
   condition_mode: !input condition_mode
   dict_var: >
     {%- set ns = namespace(list_1=[],name_1=[],list_2=[],name_2=[]) %}
-    {%- for c in cover_entity['entity_id'] %}
+    {%- set  entity = cover_entity['entity_id'] -%}
+    {%- if entity is iterable and (entity is not string and entity is not mapping) -%}
+      {%- set cover = entity -%}
+    {%- else -%}
+      {%- set cover = [entity] -%}
+    {%- endif -%}
+    {%- for c in cover %}
       {%- set position = state_attr(c,'current_position') | int -%}
       {%- set con_1 = ((position - cover_height | float) | abs >= change_threshold)
       or (cover_height in [default_height, default_template] and position not in [default_height, default_template])%}
