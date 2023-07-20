@@ -1,8 +1,8 @@
 ---
-#version 1.1.1
+#version 1.1.2
 blueprint:
   name: Cover Height
-  description: "`version 1.1.1` \n
+  description: "`version 1.1.2` \n
     Set cover position based on direct sunlight exposed to window \n\n
     Calculations are done internally in the blueprint removing the need to use a sensor to input a value
     \n for in depth information on the calculations and variables, check this forum [post](https://community.home-assistant.io/t/automatic-blinds-sunscreen-control-based-on-sun-platform/573818)
@@ -252,7 +252,7 @@ variables:
     {# default height, when automatic control is off. #}
     {%- set def_h = def / 100 * h_max -%}
     {%- set alpha = deg2rad * sun_ele -%}
-    {%- set gamma = deg2rad * (win_azi - sun_azi) -%}    
+    {% set gamma = deg2rad * ((win_azi - sun_azi + 180) % 360 - 180) %}    
     {%- set h = (d / cos(gamma)) * tan(alpha) -%}
     {# gamma is outside of FOV #}
     {%- if gamma < azi_left or gamma > azi_right or alpha < elev_low or alpha > elev_high -%}

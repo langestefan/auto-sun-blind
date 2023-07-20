@@ -30,7 +30,7 @@
     {% set def_h = (def_height | default(60)) / 100 * h_max %}
 
     {% set alpha = deg2rad * sun_ele %}
-    {% set gamma = deg2rad * (win_azi - sun_azi) %}    
+    {% set gamma = deg2rad * ((win_azi - sun_azi + 180) % 360 - 180) %}  
 
     {% set h = (d / cos(gamma)) * tan(alpha) %}
 

@@ -7,7 +7,7 @@ This [forum post](https://community.home-assistant.io/t/automatic-blinds-sunscre
 
 ![example-image](/docs/assets/angles.png)
 ## Custom Template
-`version 1.0.0`
+`version 1.0.1`
 
 A jinja macro to track the position of a vertical cover based on the sun position to block out direct sunlight.
 
@@ -24,7 +24,7 @@ Manual install is done by copying the contents of [`auto_sun_blind.jinja`](https
 ```
 [Click here for additional documentation and instructions on how to use it.](https://github.com/langestefan/auto-sun-blind/blob/main/docs/template.md)
 ## Blueprint
-`version 1.1.1`
+`version 1.1.2`
 
 This project includes a blueprint that you can use without setting up a sensor.
 
