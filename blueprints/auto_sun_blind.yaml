@@ -185,7 +185,7 @@ blueprint:
       description: Extra conditions for the automation
       default: []
       selector:
-        action: {}
+        condition: {}
     action:
       name: Extra Actions
       description: Extra actions to run before intial service
